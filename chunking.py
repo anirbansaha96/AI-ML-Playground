@@ -11,4 +11,4 @@ for chunk in pd.read_csv('dataLarge',chunksize=10000,delimiter=' ',index_col=0,h
     [nrows,ncols]=dataset.shape;
     totalrows+=nrows;
 mean=total/totalrows;    
-variance=((totalsquare/totalrows)-(mean**2))**0.5;
+standard_deviation=((totalsquare/totalrows)-(mean**2))**0.5;
