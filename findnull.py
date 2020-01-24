@@ -6,7 +6,8 @@
 import numpy as np
 import pandas as pd
 import numpy as np
-null_cols=np.ones((25,1))
+null_cols=np.zeros((25,1))
 for i in range(1,25):
-    dataset=pd.read_csv('dataLarge',delimiter=' ',index_col=0,header=None,usecols=[0,i]);
-    null_cols[i-1]=dataset[i].isnull().sum()
+    for chunk in pd.read_csv('dataLarge',delimiter=' ',index_col=0,header=None,usecols=[0,i],chunksize=10000):
+        dataset=chunk;
+        null_cols[i-1]+=dataset[i].isnull().sum();
